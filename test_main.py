@@ -17,3 +17,14 @@ def test_health_check() -> None:
 
     assert response.status_code == 200
     assert response.json() == {"status": "healthy"}
+
+
+def test_random_image() -> None:
+    response = client.get("/random-image")
+
+    assert response.status_code == 200
+    assert response.json()["image"] in [
+        "https://picsum.photos/id/237/400/300",
+        "https://picsum.photos/id/1025/400/300",
+        "https://picsum.photos/id/1074/400/300",
+    ]
